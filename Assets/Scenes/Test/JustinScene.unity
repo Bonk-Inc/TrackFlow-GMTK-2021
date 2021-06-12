@@ -132,8 +132,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 442722873}
-  - component: {fileID: 442722872}
   - component: {fileID: 442722871}
+  - component: {fileID: 442722872}
   m_Layer: 0
   m_Name: Locomotive
   m_TagString: Untagged
@@ -201,12 +201,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 442722870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 092e41c7f615df0f2b5273cc12debec5, type: 3}
+  m_Script: {fileID: 11500000, guid: d3a78651fcf7a5058817da520c230e4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  offset: 90
-  startPoint: {fileID: 1762280250}
+  train: {fileID: 1069604981}
+  firstWagon: {fileID: 927277554}
 --- !u!4 &442722873
 Transform:
   m_ObjectHideFlags: 0
@@ -323,8 +322,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 927277552}
-  - component: {fileID: 927277554}
   - component: {fileID: 927277553}
+  - component: {fileID: 927277554}
   m_Layer: 0
   m_Name: Wagon
   m_TagString: Untagged
@@ -340,7 +339,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 927277551}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.09, y: 0, z: 0}
+  m_LocalPosition: {x: -16.93, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1069604980}
@@ -406,12 +405,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 927277551}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 092e41c7f615df0f2b5273cc12debec5, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ee5241671044bca972fd2de2511dfb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  offset: 90
-  startPoint: {fileID: 1762280250}
+  prevWagon: {fileID: 0}
+  nextWagon: {fileID: 0}
+  train: {fileID: 1069604981}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +488,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.4, y: 8.8, z: -10.81}
+  m_LocalPosition: {x: 32.7, y: -3.3, z: -10.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -504,6 +503,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1069604980}
+  - component: {fileID: 1069604981}
   m_Layer: 0
   m_Name: Train
   m_TagString: Untagged
@@ -527,6 +527,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1069604981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069604979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092e41c7f615df0f2b5273cc12debec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  offset: 90
+  startPoint: {fileID: 1762280250}
 --- !u!1 &1762280249
 GameObject:
   m_ObjectHideFlags: 0
