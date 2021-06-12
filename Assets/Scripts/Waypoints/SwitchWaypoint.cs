@@ -19,4 +19,25 @@ public class SwitchWaypoint : Waypoint
         current++;
         current %= possiblePoints.Count;
     }
+
+    public override Waypoint[] GetAllPoints()
+    {
+        return possiblePoints.ToArray();
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!drawGizmoz || possiblePoints == null)
+            return;
+
+        Gizmos.color = Color.blue;
+        for (int i = 0; i < possiblePoints.Count; i++)
+        {
+            if (possiblePoints[i] == null)
+                continue;
+
+            Gizmos.DrawLine(Position, possiblePoints[i].Position);
+        }
+    }
+
 }
