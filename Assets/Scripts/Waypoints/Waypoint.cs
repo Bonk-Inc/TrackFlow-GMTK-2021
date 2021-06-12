@@ -10,5 +10,15 @@ public abstract class Waypoint : MonoBehaviour
         set => transform.position = value;
     }
 
+    protected static bool drawGizmoz = false;
+
     public abstract Waypoint NextWaypoint();
+
+    public abstract Waypoint[] GetAllPoints();
+
+    [ContextMenu("Toggle Gizmos")]
+    private void ToggleGizmos()
+    {
+        drawGizmoz = !drawGizmoz;
+    }
 }

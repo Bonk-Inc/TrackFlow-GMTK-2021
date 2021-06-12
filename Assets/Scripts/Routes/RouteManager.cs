@@ -6,10 +6,19 @@ using UnityEngine;
 public class RouteManager : MonoBehaviour
 {
     [SerializeField]
+    private Station startingPoint;
+
     private RoutePlanner planner;
+    [SerializeField]
     private Queue<Station> route;
 
     public Action onDestinationReached, onRouteFinished;
+
+    public void Start()
+    {
+        planner = GetComponent<RoutePlanner>();
+        route = planner.PlanRoute(startingPoint);
+    }
 
     public bool IsDestinationReached(Waypoint waypoint)
     {
