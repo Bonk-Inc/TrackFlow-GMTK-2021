@@ -5,7 +5,7 @@ using UnityEngine;
 public class Train : MonoBehaviour
 {
     [SerializeField] 
-    private float speed;
+    private float speed, offset;
 
     [SerializeField] 
     private Waypoint startPoint;
@@ -23,9 +23,9 @@ public class Train : MonoBehaviour
     {
         float step = Time.deltaTime * speed;
         Waypoint waypoint = (null != nextWaypoint) ? nextWaypoint : startPoint.NextWaypoint();
-        Vector3 chinaVector = transform.position - waypoint.Position;
+        Vector3 difference = transform.position - waypoint.Position;
 
-        transform.rotation = Quaternion.Euler(waypoint.Position.x, waypoint.Position.y, Vector3.Angle(chinaVector, Vector3.up));
+        transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(difference, Vector3.up) - offset);
         transform.position = Vector3.MoveTowards(transform.position, waypoint.Position, step);
         
         if (Vector3.Distance(transform.position, waypoint.Position) < 0.01f && null != waypoint.NextWaypoint())
