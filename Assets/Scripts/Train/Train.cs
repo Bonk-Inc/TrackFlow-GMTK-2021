@@ -23,9 +23,9 @@ public class Train : MonoBehaviour
     {
         float step = Time.deltaTime * speed;
         Waypoint waypoint = (null != nextWaypoint) ? nextWaypoint : startPoint.NextWaypoint();
-        Vector3 difference = transform.position - waypoint.Position;
+        Vector2 difference = transform.position - waypoint.Position;
 
-        transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(difference, Vector3.up) - offset);
+        transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector3.up, difference) - offset);
         transform.position = Vector3.MoveTowards(transform.position, waypoint.Position, step);
         
         if (Vector3.Distance(transform.position, waypoint.Position) < 0.01f && null != waypoint.NextWaypoint())
