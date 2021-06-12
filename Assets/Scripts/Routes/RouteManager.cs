@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RouteHolder : MonoBehaviour
+public class RouteManager : MonoBehaviour
 {
     [SerializeField]
     private RoutePlanner planner;
@@ -35,5 +35,10 @@ public class RouteHolder : MonoBehaviour
                     onRouteFinished.Invoke();
             }
         }
+    }
+
+    public Station[] GetDestinations()
+    {
+        return route.ToArray();
     }
 }
