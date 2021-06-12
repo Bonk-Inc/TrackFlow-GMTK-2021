@@ -10,16 +10,18 @@ public class Train : MonoBehaviour
     [SerializeField] 
     private Waypoint startPoint;
 
-    private Waypoint nextWaypoint;
+    public float Speed => speed;
     
+    public float Offset => offset;
+    
+    public Waypoint StartPoint => startPoint;
+
     // Start is called before the first frame update
     void Start()
-    {
-        transform.position = startPoint.Position;
-    }
+    { }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         float step = Time.deltaTime * speed;
         Waypoint waypoint = (null != nextWaypoint) ? nextWaypoint : startPoint.NextWaypoint();
@@ -30,5 +32,5 @@ public class Train : MonoBehaviour
         
         if (Vector3.Distance(transform.position, waypoint.Position) < 0.01f && null != waypoint.NextWaypoint())
             nextWaypoint = waypoint.NextWaypoint();
-    }
+    }*/
 }
