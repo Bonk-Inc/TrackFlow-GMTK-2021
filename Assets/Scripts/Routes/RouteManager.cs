@@ -27,6 +27,7 @@ public class RouteManager : MonoBehaviour
             if (onDestinationReached != null)
                 onDestinationReached.Invoke();
 
+            // Plan new route when reached last destination
             if (route.Count == 0)
             {
                 route = planner.PlanRoute(route.Dequeue());
@@ -40,5 +41,10 @@ public class RouteManager : MonoBehaviour
     public Station[] GetDestinations()
     {
         return route.ToArray();
+    }
+
+    public Station GetNextDestination()
+    {
+        return route.Peek();
     }
 }
