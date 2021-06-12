@@ -9,6 +9,8 @@ public class Train : MonoBehaviour
 
     [SerializeField] 
     private Waypoint startPoint;
+
+    private Waypoint nextWaypoint;
     
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,13 @@ public class Train : MonoBehaviour
     void Update()
     {
         float step = Time.deltaTime * speed;
-        transform.position = Vector3.MoveTowards(transform.position, startPoint.NextWaypoint().Position, step);
+        Waypoint waypoint = (null != nextWaypoint) ? nextWaypoint : startPoint.NextWaypoint();
+        Vector3 chinaVector = transform.position - waypoint.Position;
+
+        transform.rotation = Quaternion.Euler(waypoint.Position.x, waypoint.Position.y, Vector3.Angle(chinaVector, Vector3.up));
+        transform.position = Vector3.MoveTowards(transform.position, waypoint.Position, step);
+        
+        if (Vector3.Distance(transform.position, waypoint.Position) < 0.01f && null != waypoint.NextWaypoint())
+            nextWaypoint = waypoint.NextWaypoint();
     }
 }
