@@ -410,6 +410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prevWagon: {fileID: 0}
   nextWagon: {fileID: 0}
+  train: {fileID: 1069604981}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
