@@ -16,7 +16,7 @@ public class SwitchWaypoint : Waypoint
 
     public void SwitchRoute()
     {
-        current++;
+        this.current = current++;
         current %= possiblePoints.Count;
     }
 }
