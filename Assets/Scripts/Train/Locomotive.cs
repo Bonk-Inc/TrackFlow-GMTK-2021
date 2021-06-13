@@ -11,6 +11,8 @@ public class Locomotive : MonoBehaviour
     private Wagon firstWagon;
 
     private Waypoint nextWaypoint;
+
+    public Wagon FirstWagon => firstWagon;
     
     // Start is called before the first frame update
     void Start()
