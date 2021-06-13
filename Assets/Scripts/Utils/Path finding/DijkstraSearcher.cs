@@ -5,7 +5,7 @@ using System;
 
 public class DijkstraSearcher : MonoBehaviour
 {
-    private SortedList<float, Node> open = new SortedList<float, Node>();
+    private BinairyHeap<Node> open = new BinairyHeap<Node>(new NodeDistanceComparer());
     private List<Waypoint> closed = new List<Waypoint>();
 
     public Waypoint[] FindFrom(Waypoint start, Func<Node, bool> check)
@@ -13,15 +13,14 @@ public class DijkstraSearcher : MonoBehaviour
         Node current = new Node(start, null, 0);
         float currentDistance = 0;
 
-        int i = 0;
 
         while (current != null)
         {
             
             if (closed.Contains(current.waypoint))
             {
-                var (nPoint, nDistance) = GetHighest();
-                currentDistance = nDistance;
+                var nPoint = GetHighest();
+                currentDistance = nPoint.distance;
                 current = nPoint;
                 continue;
             }
@@ -38,12 +37,12 @@ public class DijkstraSearcher : MonoBehaviour
                     continue;
 
                 float distanceToNeighbor = (neighbor.Position - current.waypoint.Position).magnitude;
-                open.Add(currentDistance + distanceToNeighbor, new Node(neighbor, current, distanceToNeighbor));
+                open.Enqueue(new Node(neighbor, current, currentDistance + distanceToNeighbor));
             }
 
             closed.Add(current.waypoint);
-            var (point, distance) = GetHighest();
-            currentDistance = distance;
+            var point = GetHighest();
+            currentDistance = point != null ? point.distance : 0;
             current = point;
         }
 
@@ -51,17 +50,13 @@ public class DijkstraSearcher : MonoBehaviour
     }
 
 
-    private (Node point, float distance) GetHighest()
+    private Node GetHighest()
     {
         if(open.Count == 0)
         {
-            return (null, 0);
+            return null;
         }
-
-        var highestKey = open.Keys.Max();
-        var next = (open[highestKey], highestKey);
-        open.Remove(highestKey);
-        return next;
+        return open.Dequeue();
     }
 
     private Waypoint[] ReconstructPath(Node node)
@@ -99,6 +94,14 @@ public class DijkstraSearcher : MonoBehaviour
         }
     }
 
-    
+    public class NodeDistanceComparer : Comparer<Node>
+    {
+        public override int Compare(Node x, Node y)
+        {
+            return x.distance.CompareTo(y.distance);
+        }
+    }
+
+
 
 }
