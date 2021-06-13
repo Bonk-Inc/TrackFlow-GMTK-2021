@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class SwitchWaypoint : Waypoint
 {
     [SerializeField]
     private List<Waypoint> possiblePoints;
+
+    [SerializeField]
+    private Sprite[] switchableSprites;
+
+    [SerializeField]
+    private SpriteRenderer switchableImage;
 
     private int current = 0;
 
@@ -17,8 +22,10 @@ public class SwitchWaypoint : Waypoint
 
     public void SwitchRoute()
     {
-        this.current = current++;
-        current %= possiblePoints.Count;
+        this.current = this.current + 1;
+        this.current %= possiblePoints.Count;
+
+        switchableImage.sprite = switchableSprites[this.current];
     }
 
     public override Waypoint[] GetAllPoints()

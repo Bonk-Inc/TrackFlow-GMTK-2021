@@ -46,3 +46,7 @@ MonoBehaviour:
   possiblePoints:
   - {fileID: 0}
   - {fileID: 0}
+  switchableSprites:
+  - {fileID: 21300000, guid: 25adabe3a3b6ae04bbd65a7183357756, type: 3}
+  - {fileID: 21300000, guid: f8da10fb5e437c34ab5db841a806e47f, type: 3}
+  switchableImage: {fileID: 0}
