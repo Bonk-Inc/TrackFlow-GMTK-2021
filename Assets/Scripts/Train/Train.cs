@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Train : MonoBehaviour
@@ -16,10 +18,31 @@ public class Train : MonoBehaviour
     [SerializeField]
     private Wagon prefabWagon;
 
+    [SerializeField]
+    private TextMeshProUGUI lengthCounter;
+    
+    private int length;
+    
     public float Speed { get => speed; }
     public float Offset { get => offset; }
     
     public Waypoint StartPoint { get => startPoint; }
+
+    private void Start()
+    {
+        ArrivalTime arrivalTime = GetComponent<ArrivalTime>();
+
+        arrivalTime.onEarlyArrival += AddWagon;
+        arrivalTime.onLateArrival += DetachLastWagon;
+
+        length = 1;
+        UpdateCounter();
+    }
+
+    private void UpdateCounter()
+    {
+        lengthCounter.text = length.ToString();
+    }
 
     [ContextMenu("Add Wagon")]
     public void AddWagon()
@@ -30,6 +53,9 @@ public class Train : MonoBehaviour
         wagonToAdd.NextWaypoint = lastWagonAttached.NextWaypoint;
         wagonToAdd.Train = this;
         wagonToAdd.AttachTo(lastWagonAttached);
+
+        length++;
+        UpdateCounter();
     }
 
     [ContextMenu("Delete last wagon attached")]
@@ -37,5 +63,8 @@ public class Train : MonoBehaviour
     {
         Wagon lastWagonAttached = locomotive.FirstWagon.GetLastWagonAttached();
         lastWagonAttached.Detach();
+
+        length--;
+        UpdateCounter();
     }
 }

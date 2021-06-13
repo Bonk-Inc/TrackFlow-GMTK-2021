@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Locomotive : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class Locomotive : MonoBehaviour
     private Waypoint nextWaypoint;
 
     public Wagon FirstWagon => firstWagon;
-    
+    public Action<Waypoint> onWayPointReach;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,10 @@ public class Locomotive : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, waypoint.Position, step);
         
         if (Vector3.Distance(transform.position, waypoint.Position) < 0.01f && null != waypoint.NextWaypoint())
+        {
             nextWaypoint = waypoint.NextWaypoint();
+            if (onWayPointReach != null)
+                onWayPointReach(waypoint);
+        }
     }
 }

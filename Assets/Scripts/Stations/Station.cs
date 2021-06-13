@@ -87,7 +87,7 @@ public class Station : MonoBehaviour
 
     public Station FindRandom()
     {
-        int stationNumber = Random.Range(0, stations.Count);
+        int stationNumber = Random.Range(0, stations.Count - 1);
         return stations[stationNumber].station;
     }
 

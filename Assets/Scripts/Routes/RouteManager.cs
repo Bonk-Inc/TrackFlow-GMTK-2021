@@ -14,10 +14,12 @@ public class RouteManager : MonoBehaviour
 
     public Action onDestinationReached, onRouteFinished;
 
-    public void Awake()
+    public void Start()
     {
         planner = GetComponent<RoutePlanner>();
         route = planner.PlanRoute(startingPoint);
+        Locomotive loco = GetComponentInChildren<Locomotive>();
+        loco.onWayPointReach += CheckStation;
     }
 
     public bool IsDestinationReached(Waypoint waypoint)

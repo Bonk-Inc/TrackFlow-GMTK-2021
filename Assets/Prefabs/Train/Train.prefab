@@ -10,6 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9174290889365682114}
   - component: {fileID: 9174290889365682115}
+  - component: {fileID: 726395986}
+  - component: {fileID: 726395985}
+  - component: {fileID: 726395984}
+  - component: {fileID: 726395983}
   m_Layer: 0
   m_Name: Train
   m_TagString: Untagged
@@ -50,6 +54,61 @@ MonoBehaviour:
   startPoint: {fileID: 0}
   locomotive: {fileID: 9174290889841704334}
   prefabWagon: {fileID: 9174290889491330628}
+  lengthCounter: {fileID: 0}
+--- !u!114 &726395986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9174290889365682117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 501668f2b34d89e4385438cb25089564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: {fileID: 726395985}
+  timePerDistance: 1
+  delayedOffset: 1.4
+  startingPoint: {fileID: 0}
+--- !u!114 &726395985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9174290889365682117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5631f0caf5425c4099ae0b1f4c217dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &726395984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9174290889365682117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a80b6616233d24580272414dcf98af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingPoint: {fileID: 0}
+--- !u!114 &726395983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9174290889365682117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3d3bac3d7cf964ba541769f7f846dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  routeSize: 3
 --- !u!1 &9174290889841704320
 GameObject:
   m_ObjectHideFlags: 0
