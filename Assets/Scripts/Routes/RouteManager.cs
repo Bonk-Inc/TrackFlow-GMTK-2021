@@ -6,10 +6,19 @@ using UnityEngine;
 public class RouteManager : MonoBehaviour
 {
     [SerializeField]
+    private Station startingPoint;
+
     private RoutePlanner planner;
+    
     private Queue<Station> route;
 
     public Action onDestinationReached, onRouteFinished;
+
+    public void Awake()
+    {
+        planner = GetComponent<RoutePlanner>();
+        route = planner.PlanRoute(startingPoint);
+    }
 
     public bool IsDestinationReached(Waypoint waypoint)
     {
@@ -27,6 +36,7 @@ public class RouteManager : MonoBehaviour
             if (onDestinationReached != null)
                 onDestinationReached.Invoke();
 
+            // Plan new route when reached last destination
             if (route.Count == 0)
             {
                 route = planner.PlanRoute(route.Dequeue());
@@ -40,5 +50,10 @@ public class RouteManager : MonoBehaviour
     public Station[] GetDestinations()
     {
         return route.ToArray();
+    }
+
+    public Station GetNextDestination()
+    {
+        return route.Peek();
     }
 }

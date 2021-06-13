@@ -10,25 +10,25 @@ public class Train : MonoBehaviour
     [SerializeField] 
     private Waypoint startPoint;
 
-    private Waypoint nextWaypoint;
+    [SerializeField] 
+    private Locomotive locomotive;
+
+    [SerializeField]
+    private Wagon prefabWagon;
+
+    public float Speed { get => speed; }
+    public float Offset { get => offset; }
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        transform.position = startPoint.Position;
-    }
+    public Waypoint StartPoint { get => startPoint; }
 
-    // Update is called once per frame
-    void Update()
+    [ContextMenu("Add Wagon")]
+    public void AddWagon()
     {
-        float step = Time.deltaTime * speed;
-        Waypoint waypoint = (null != nextWaypoint) ? nextWaypoint : startPoint.NextWaypoint();
-        Vector2 difference = transform.position - waypoint.Position;
+        Wagon wagonToAdd = Instantiate(prefabWagon, transform);
+        Wagon lastWagonAttached = locomotive.FirstWagon.GetLastWagonAttached();
 
-        transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector3.up, difference) - offset);
-        transform.position = Vector3.MoveTowards(transform.position, waypoint.Position, step);
-        
-        if (Vector3.Distance(transform.position, waypoint.Position) < 0.01f && null != waypoint.NextWaypoint())
-            nextWaypoint = waypoint.NextWaypoint();
+        wagonToAdd.NextWaypoint = lastWagonAttached.NextWaypoint;
+        wagonToAdd.Train = this;
+        wagonToAdd.AttachTo(lastWagonAttached);
     }
 }
