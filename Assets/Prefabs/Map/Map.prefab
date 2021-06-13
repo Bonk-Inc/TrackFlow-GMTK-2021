@@ -3456,6 +3456,10 @@ PrefabInstance:
       value: Station Waypoint
       objectReference: {fileID: 0}
     - target: {fileID: 3089575368784866748, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
+      propertyPath: name
+      value: Chasjan
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089575368784866748, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
       propertyPath: color.b
       value: 0.7725491
       objectReference: {fileID: 0}

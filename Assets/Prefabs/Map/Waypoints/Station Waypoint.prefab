@@ -60,3 +60,5 @@ MonoBehaviour:
   name: Waypoint
   stationRange: 4
   stations: []
+  color: {r: 0, g: 0, b: 0, a: 0}
+  symbol: {fileID: 21300000, guid: 5cd0563b2a3715f4b8bf7b213592e8aa, type: 3}

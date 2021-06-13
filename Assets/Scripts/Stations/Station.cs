@@ -16,12 +16,17 @@ public class Station : MonoBehaviour
     [SerializeField] 
     private Color color;
 
+    [SerializeField]
+    private Sprite symbol;
+
     private Waypoint location;
 
     public string Name { get => name; set => name = value; }
     
     public Color Color { get => color; }
     
+    public Sprite Symbol { get => symbol; }
+
     public Waypoint Location { get => location; }
 
     private void Awake()

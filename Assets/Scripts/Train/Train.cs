@@ -19,9 +19,8 @@ public class Train : MonoBehaviour
     private Wagon prefabWagon;
 
     [SerializeField]
-    private TextMeshProUGUI lengthCounter, destinationName;
+    private TextMeshProUGUI lengthCounter;
 
-    [SerializeField] 
     private RouteManager routeManager;
 
     private Station nextDestination;
@@ -37,13 +36,11 @@ public class Train : MonoBehaviour
     private void Start()
     {
         ArrivalTime arrivalTime = GetComponent<ArrivalTime>();
-
+        routeManager = GetComponent<RouteManager>();
         arrivalTime.onEarlyArrival += AddWagon;
-        arrivalTime.onLateArrival += DetachLastWagon;
+        //arrivalTime.onLateArrival += DetachLastWagon; // TODO Add when showing times!
 
         length = 1;
-        nextDestination = routeManager.GetNextDestination();
-        destinationName.text = nextDestination.Name;
         
         UpdateCounter();
     }

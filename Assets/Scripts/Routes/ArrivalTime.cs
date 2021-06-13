@@ -18,7 +18,10 @@ public class ArrivalTime : MonoBehaviour
 
     private float arrivalTime = 40f, lateTime = 60f;
 
+    public Action<Station> onDestinationUpdated;
     public Action onEarlyArrival, onLateArrival;
+
+    private bool hap = false;
 
     private void Start()
     {
@@ -27,6 +30,15 @@ public class ArrivalTime : MonoBehaviour
 
         CalculateNextArrivalTime();
         RestartTime();
+    }
+    private void Update()
+    {
+        if (!hap)
+        {
+            hap = true;
+        if (onDestinationUpdated != null)
+            onDestinationUpdated.Invoke(destination);
+        }
     }
 
     private void HandleArrival()
@@ -55,6 +67,9 @@ public class ArrivalTime : MonoBehaviour
 
         destination = destination != null ? destination.FindStation(nextDestination).station :
                 startingPoint.FindStation(nextDestination).station;
+
+        if (onDestinationUpdated != null)
+            onDestinationUpdated.Invoke(destination);
     }
 
     private void RestartTime()

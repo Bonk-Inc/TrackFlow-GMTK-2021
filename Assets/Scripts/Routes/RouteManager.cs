@@ -32,8 +32,11 @@ public class RouteManager : MonoBehaviour
     {
         if (IsDestinationReached(waypoint))
         {
-            // Remove current destination
-            Station currentDestination = route.Dequeue();
+            if (route.Count == 0)
+                return;
+
+                // Remove current destination
+                Station currentDestination = route.Dequeue();
 
             if (onDestinationReached != null)
                 onDestinationReached.Invoke();
@@ -41,7 +44,7 @@ public class RouteManager : MonoBehaviour
             // Plan new route when reached last destination
             if (route.Count == 0)
             {
-                route = planner.PlanRoute(route.Dequeue());
+                route = planner.PlanRoute(currentDestination);
 
                 if (onRouteFinished != null)
                     onRouteFinished.Invoke();

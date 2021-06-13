@@ -16,7 +16,7 @@ public class AxisInput2D : MoveInput2D
         if (axis.x == 0 && axis.y == 0)
             return (false, Vector2.zero);
 
-        return (true, axis);
+        return (true, axis.normalized * speed);
     }
 
     private void Update()
