@@ -14,7 +14,7 @@ public class RouteManager : MonoBehaviour
 
     public Action onDestinationReached, onRouteFinished;
 
-    public void Awake()
+    public void Start()
     {
         planner = GetComponent<RoutePlanner>();
         route = planner.PlanRoute(startingPoint);
