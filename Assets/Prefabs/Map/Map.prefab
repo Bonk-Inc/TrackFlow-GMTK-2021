@@ -2664,6 +2664,7 @@ MonoBehaviour:
   name: Demitasse
   stationRange: 4
   stations: []
+  color: {r: 0, g: 0.06666667, b: 1, a: 0}
 --- !u!1 &7323883025584914453
 GameObject:
   m_ObjectHideFlags: 0
@@ -3133,6 +3134,10 @@ PrefabInstance:
       propertyPath: name
       value: Crockery
       objectReference: {fileID: 0}
+    - target: {fileID: 3089575368784866748, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
+      propertyPath: color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3089575368784866750, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
       propertyPath: next
       value: 
@@ -3449,6 +3454,18 @@ PrefabInstance:
     - target: {fileID: 3089575368784866737, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
       propertyPath: m_Name
       value: Station Waypoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089575368784866748, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
+      propertyPath: color.b
+      value: 0.7725491
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089575368784866748, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
+      propertyPath: color.g
+      value: 0.56078434
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089575368784866748, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
+      propertyPath: color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3089575368784866750, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
       propertyPath: next
@@ -4232,6 +4249,18 @@ PrefabInstance:
       propertyPath: name
       value: Teacup City
       objectReference: {fileID: 0}
+    - target: {fileID: 3089575368784866748, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
+      propertyPath: color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089575368784866748, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
+      propertyPath: color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089575368784866748, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
+      propertyPath: color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3089575368784866750, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
       propertyPath: next
       value: 
@@ -4312,6 +4341,14 @@ PrefabInstance:
     - target: {fileID: 3089575368784866748, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
       propertyPath: name
       value: Chalice
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089575368784866748, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
+      propertyPath: color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089575368784866748, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
+      propertyPath: color.r
+      value: 0.16862746
       objectReference: {fileID: 0}
     - target: {fileID: 3089575368784866750, guid: 76a4a866b5d216343926e3533297ac08, type: 3}
       propertyPath: next
