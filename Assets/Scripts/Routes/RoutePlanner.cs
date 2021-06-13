@@ -1,51 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class RoutePlanner : MonoBehaviour
 {
     [SerializeField]
-    private int routeSize = 4;
+    private int routeSize = 3;
+    [SerializeField]
     private Queue<Station> route = new Queue<Station>();
 
     public Queue<Station> PlanRoute(Station startingPoint)
     {
         route.Clear();
-        for (int i = 0; i < routeSize; i++)
-        {
-            if(route.Count == 0)
-                AddDestination(startingPoint);
-            else
-                AddDestination(route.ToArray()[i-1]);
-        }
-
+        AddDestinations(startingPoint);
         return route;
     }
 
-    private void AddDestination(Station from, List<Station> tries = null)
+    private void AddDestinations(Station from)
     {
-        if (tries == null)
-            tries = new List<Station>();
+        List<Station> toAdd = FixDifferences(from.FindNear(), from);
 
-
-        Station toAdd = from.FindNear();
-        if (ContainsStation(toAdd))
+        for (int i = 0; i < toAdd.Count; i++)
         {
-            tries.Add(toAdd);
-            AddDestination(from);
+            route.Enqueue(toAdd[i]);
         }
-        else
-            route.Enqueue(toAdd);
+
+        List<Station> farStations = from.FindFar();
+        int finalStation = Random.Range(0, farStations.Count - 1);
+
+        route.Enqueue(farStations[finalStation]);
     }
 
-    private bool ContainsStation(Station station)
+    private List<Station> FixDifferences(List<Station> toChange, Station from)
     {
-        foreach (Station currentStation in route.ToArray())
+        int diff = toChange.Count - routeSize;
+        if (diff > 0)
         {
-            if (currentStation.Equals(station))
-                return true;
+            for (int i = 0; i < toChange.Count - routeSize; i++)
+            {
+                int toRemove = Random.Range(0, toChange.Count - 1);
+                toChange.RemoveAt(toRemove);
+            }
         }
-        return false;
+        else if (diff < 0)
+        {
+            diff = Mathf.Abs(diff);
+            for (int i = 0; i < diff; i++)
+            {
+                toChange.Add(from.FindRandom());
+            }
+        }
+
+        return toChange;
     }
 }

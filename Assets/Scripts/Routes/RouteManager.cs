@@ -9,12 +9,12 @@ public class RouteManager : MonoBehaviour
     private Station startingPoint;
 
     private RoutePlanner planner;
-    [SerializeField]
+    
     private Queue<Station> route;
 
     public Action onDestinationReached, onRouteFinished;
 
-    public void Start()
+    public void Awake()
     {
         planner = GetComponent<RoutePlanner>();
         route = planner.PlanRoute(startingPoint);

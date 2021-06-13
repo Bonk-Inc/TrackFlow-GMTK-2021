@@ -10,6 +10,9 @@ public class ArrivalTime : MonoBehaviour
     [SerializeField]
     private float timePerDistance = 1f, delayedOffset = 1.4f;
 
+    [SerializeField]
+    private Station startingPoint;
+
     private RouteManager routeManager;
     private Station destination;
 
@@ -19,7 +22,7 @@ public class ArrivalTime : MonoBehaviour
 
     private void Start()
     {
-        routeManager.GetComponent<RouteManager>();
+        routeManager = GetComponent<RouteManager>();
         routeManager.onDestinationReached += HandleArrival;
 
         CalculateNextArrivalTime();
@@ -44,10 +47,14 @@ public class ArrivalTime : MonoBehaviour
     private void CalculateNextArrivalTime()
     {
         Station nextDestination = routeManager.GetNextDestination();
-        float distance = destination.FindStation(nextDestination).distance;
+        float distance = destination != null ? destination.FindStation(nextDestination).distance :
+                startingPoint.FindStation(nextDestination).distance;
 
         arrivalTime = distance * timePerDistance;
         lateTime = arrivalTime * delayedOffset;
+
+        destination = destination != null ? destination.FindStation(nextDestination).station :
+                startingPoint.FindStation(nextDestination).station;
     }
 
     private void RestartTime()
