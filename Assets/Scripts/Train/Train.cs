@@ -21,6 +21,14 @@ public class Train : MonoBehaviour
     
     public Waypoint StartPoint { get => startPoint; }
 
+    private void Start()
+    {
+        ArrivalTime arrivalTime = GetComponent<ArrivalTime>();
+
+        arrivalTime.onEarlyArrival += AddWagon;
+        arrivalTime.onLateArrival += DetachLastWagon;
+    }
+
     [ContextMenu("Add Wagon")]
     public void AddWagon()
     {

@@ -18,6 +18,8 @@ public class RouteManager : MonoBehaviour
     {
         planner = GetComponent<RoutePlanner>();
         route = planner.PlanRoute(startingPoint);
+        Locomotive loco = GetComponentInChildren<Locomotive>();
+        loco.onWayPointReach += CheckStation;
     }
 
     public bool IsDestinationReached(Waypoint waypoint)
