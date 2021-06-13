@@ -12,15 +12,12 @@ public class Wagon : MonoBehaviour
     
     private Waypoint nextWaypoint;
 
-    public Wagon PrevWagon() => prevWagon;
+    public Wagon PrevWagon { get => prevWagon; set => prevWagon = value; }
+    public Wagon NextWagon { get => nextWagon; set => nextWagon = value; }
     
-    public void PrevWagon(Wagon wagon) => prevWagon = wagon;
+    public Train Train { set => train = value; }
     
-    public Wagon NextWagon() => nextWagon;
-
-    public void NextWagon(Wagon wagon) => nextWagon = wagon;
-
-    public void Train(Train train) => this.train = train;
+    public Waypoint NextWaypoint { get => nextWaypoint; set => nextWaypoint = value; }
     
     public bool HasNextWagon => null != nextWagon;
 
@@ -49,7 +46,7 @@ public class Wagon : MonoBehaviour
         if (HasNextWagon)
         {
             while (lastWagon.HasNextWagon)
-                lastWagon = lastWagon.NextWagon();
+                lastWagon = lastWagon.NextWagon;
         }
 
         return lastWagon;
@@ -57,7 +54,7 @@ public class Wagon : MonoBehaviour
 
     public void AttachTo(Wagon prevWagon)
     {
-        prevWagon.NextWagon(this);
+        prevWagon.NextWagon = this;
         
         this.prevWagon = prevWagon;
         this.nextWagon = null;
@@ -67,8 +64,7 @@ public class Wagon : MonoBehaviour
     {
         if (null != prevWagon)
         {
-            transform.position = new Vector3(prevWagon.transform.position.x - 5,
-                prevWagon.transform.position.y, prevWagon.transform.position.z);
+            transform.localPosition = prevWagon.transform.localPosition + (prevWagon.transform.right.normalized * -5);
         }
     }
 }
