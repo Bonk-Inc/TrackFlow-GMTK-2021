@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Train : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class Train : MonoBehaviour
     [SerializeField] 
     private RouteManager routeManager;
 
+    [SerializeField] 
+    private Image stationIcon;
+    
     private Station nextDestination;
     
     private int length;
@@ -44,6 +48,7 @@ public class Train : MonoBehaviour
         length = 1;
         nextDestination = routeManager.GetNextDestination();
         destinationName.text = nextDestination.Name;
+        stationIcon.color = nextDestination.Color;
         
         UpdateCounter();
     }
