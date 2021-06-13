@@ -6,6 +6,9 @@ public class Station : MonoBehaviour
 {
     [SerializeField]
     private string name;
+
+    [SerializeField]
+    private int stationRange = 10;
     private Waypoint location;
 
     [SerializeField]
@@ -55,6 +58,35 @@ public class Station : MonoBehaviour
         }
         return null;
     }
+
+    // Within first 10%
+    public List<StationDistance> FindNear()
+    {
+        int range = Mathf.FloorToInt(stations.Count / stationRange); //2
+        return FindInRange(0, range);
+    }
+
+    // Within last 10%
+    public List<StationDistance> FindFar()
+    {
+        int range = Mathf.FloorToInt(stations.Count / stationRange);
+        return FindInRange(stations.Count - range, stations.Count);
+    }
+    
+    
+    public List<StationDistance> FindInRange(int min, int max)
+    {
+        List<Station> possibleStations = new List<Station>();
+
+        return stations.GetRange(min, max - min);
+    }
+
+    public Station FindRandom()
+    {
+        int stationNumber = Random.Range(0, stations.Count);
+        return stations[stationNumber].station;
+    }
+
 
     [System.Serializable]
     public class StationDistance
