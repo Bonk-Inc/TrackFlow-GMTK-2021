@@ -59,6 +59,14 @@ public class Wagon : MonoBehaviour
         this.prevWagon = prevWagon;
         this.nextWagon = null;
     }
+
+    public void Detach()
+    {
+        if (null != prevWagon)
+            prevWagon.NextWagon = null;
+        
+        Destroy(gameObject);
+    }
     
     private void CoupleWagon()
     {

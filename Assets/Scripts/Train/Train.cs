@@ -31,4 +31,11 @@ public class Train : MonoBehaviour
         wagonToAdd.Train = this;
         wagonToAdd.AttachTo(lastWagonAttached);
     }
+
+    [ContextMenu("Delete last wagon attached")]
+    public void DetachLastWagon()
+    {
+        Wagon lastWagonAttached = locomotive.FirstWagon.GetLastWagonAttached();
+        lastWagonAttached.Detach();
+    }
 }
