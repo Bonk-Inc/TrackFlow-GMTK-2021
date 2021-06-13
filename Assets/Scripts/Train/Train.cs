@@ -19,11 +19,17 @@ public class Train : MonoBehaviour
     private Wagon prefabWagon;
 
     [SerializeField]
-    private TextMeshProUGUI lengthCounter;
+    private TextMeshProUGUI lengthCounter, destinationName;
+
+    [SerializeField] 
+    private RouteManager routeManager;
+
+    private Station nextDestination;
     
     private int length;
     
     public float Speed { get => speed; }
+    
     public float Offset { get => offset; }
     
     public Waypoint StartPoint { get => startPoint; }
@@ -36,6 +42,9 @@ public class Train : MonoBehaviour
         arrivalTime.onLateArrival += DetachLastWagon;
 
         length = 1;
+        nextDestination = routeManager.GetNextDestination();
+        destinationName.text = nextDestination.Name;
+        
         UpdateCounter();
     }
 
