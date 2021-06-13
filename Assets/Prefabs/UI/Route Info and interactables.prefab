@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 8393595097919893938}
   - component: {fileID: 4593644179621647709}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -454,7 +454,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 191, y: -76.5}
+  m_AnchoredPosition: {x: 175, y: -76.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8393595097919893938
@@ -740,8 +740,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -231.9, y: -540.1}
-  m_SizeDelta: {x: 400, y: 200}
+  m_AnchoredPosition: {x: -175, y: -540.1}
+  m_SizeDelta: {x: 350, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4558254774915555152
 CanvasRenderer:

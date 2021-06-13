@@ -9,12 +9,19 @@ public class Station : MonoBehaviour
 
     [SerializeField]
     private int stationRange = 5;
-    private Waypoint location;
-
+    
     [SerializeField]
     private List<StationDistance> stations;
 
+    [SerializeField] 
+    private Color color;
+
+    private Waypoint location;
+
     public string Name { get => name; set => name = value; }
+    
+    public Color Color { get => color; }
+    
     public Waypoint Location { get => location; }
 
     private void Awake()
