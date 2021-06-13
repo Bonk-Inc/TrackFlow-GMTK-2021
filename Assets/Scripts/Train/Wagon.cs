@@ -12,13 +12,24 @@ public class Wagon : MonoBehaviour
     
     private Waypoint nextWaypoint;
 
+    public Wagon PrevWagon() => prevWagon;
+    
+    public void PrevWagon(Wagon wagon) => prevWagon = wagon;
+    
+    public Wagon NextWagon() => nextWagon;
+
+    public void NextWagon(Wagon wagon) => nextWagon = wagon;
+
+    public void Train(Train train) => this.train = train;
+    
+    public bool HasNextWagon => null != nextWagon;
+
     void Start()
     {
-        //TODO: uncomment when wagons get generated automatically
-        //CoupleWagon();
+        CoupleWagon();
     }
 
-    private void Update()
+    void Update()
     {
         float step = Time.deltaTime * train.Speed;
         Waypoint waypoint = (null != nextWaypoint) ? nextWaypoint : train.StartPoint.NextWaypoint();
@@ -31,7 +42,27 @@ public class Wagon : MonoBehaviour
             nextWaypoint = waypoint.NextWaypoint();
     }
 
-    [ContextMenu("Couples wagon")]
+    public Wagon GetLastWagonAttached()
+    {
+        Wagon lastWagon = this;
+
+        if (HasNextWagon)
+        {
+            while (lastWagon.HasNextWagon)
+                lastWagon = lastWagon.NextWagon();
+        }
+
+        return lastWagon;
+    }
+
+    public void AttachTo(Wagon prevWagon)
+    {
+        prevWagon.NextWagon(this);
+        
+        this.prevWagon = prevWagon;
+        this.nextWagon = null;
+    }
+    
     private void CoupleWagon()
     {
         if (null != prevWagon)
