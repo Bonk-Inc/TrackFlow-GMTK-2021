@@ -38,8 +38,6 @@ public class RouteManager : MonoBehaviour
                 // Remove current destination
                 Station currentDestination = route.Dequeue();
 
-            if (onDestinationReached != null)
-                onDestinationReached.Invoke();
 
             // Plan new route when reached last destination
             if (route.Count == 0)
@@ -49,6 +47,9 @@ public class RouteManager : MonoBehaviour
                 if (onRouteFinished != null)
                     onRouteFinished.Invoke();
             }
+
+            if (onDestinationReached != null)
+                onDestinationReached.Invoke();
         }
     }
 
@@ -59,6 +60,8 @@ public class RouteManager : MonoBehaviour
 
     public Station GetNextDestination()
     {
+        if (route.Count == 0)
+            return null;
         return route.Peek();
     }
 }
