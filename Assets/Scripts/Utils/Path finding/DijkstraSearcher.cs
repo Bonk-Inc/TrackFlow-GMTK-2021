@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-public class DijkstraSearcher : MonoBehaviour
+public class DijkstraSearcher
 {
     private BinairyHeap<Node> open = new BinairyHeap<Node>(new NodeDistanceComparer());
     private List<Waypoint> closed = new List<Waypoint>();
@@ -13,10 +13,8 @@ public class DijkstraSearcher : MonoBehaviour
         Node current = new Node(start, null, 0);
         float currentDistance = 0;
 
-
         while (current != null)
         {
-            
             if (closed.Contains(current.waypoint))
             {
                 var nPoint = GetHighest();
@@ -98,7 +96,7 @@ public class DijkstraSearcher : MonoBehaviour
     {
         public override int Compare(Node x, Node y)
         {
-            return x.distance.CompareTo(y.distance);
+            return y.distance.CompareTo(x.distance);
         }
     }
 
